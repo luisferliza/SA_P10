@@ -22,7 +22,7 @@ Y para detenerlo ejecutamos
 sudo docker-compose down
 ```
 
-```
+
  ## API REST
  Todas las API'S desarrolladas funcionan sobre NODEJS por lo que el docker file es el mismo para todas y se muestra a continuacion
 
