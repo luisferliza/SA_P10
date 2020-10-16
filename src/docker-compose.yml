@@ -1,0 +1,50 @@
+version: "3"
+services:
+  driver:
+    image: driver
+    ports:
+      - "3200:3200"
+    networks:
+      testing_net:
+            ipv4_address: 182.18.7.9    
+    environment:
+      - PORT=3200      
+  
+  restaurant:
+    image: restaurant
+    ports:
+      - "3000:3000"
+    networks:
+      testing_net:
+            ipv4_address: 182.18.7.8    
+    environment:
+      - PORT=3000      
+
+  ebs:
+    image: ebs
+    ports:
+      - "5000:5000"
+    networks:
+      testing_net:
+            ipv4_address: 182.18.7.10    
+    environment:
+      - PORT=5000  
+  
+  client:
+    image: client    
+    networks:
+      testing_net:
+            ipv4_address: 182.18.7.11
+    environment:
+      - EBSIP=182.18.7.10
+    depends_on:
+      - ebs
+    
+      
+    
+networks:
+    testing_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 182.18.7.0/24
